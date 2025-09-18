@@ -1,0 +1,7 @@
+[
+  {
+    "test": "Server Health Check",
+    "status": "FAIL",
+    "error": "Server is not running or unhealthy"
+  }
+]
