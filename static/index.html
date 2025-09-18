@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホテル推薦システム</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏨 ホテル推薦システム</h1>
+            <p>駅名と条件を入力して、おすすめのホテルを探しましょう</p>
+        </header>
+
+        <main>
+            <div class="search-form">
+                <form id="hotel-search-form">
+                    <div class="form-group">
+                        <label for="station-name">駅名：</label>
+                        <input type="text" id="station-name" name="station_name" 
+                               placeholder="例: 新宿駅" required>
+                        <small class="form-hint">最寄り駅の名前を入力してください</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price-limit">予算上限（円）：</label>
+                        <input type="number" id="price-limit" name="price_limit" 
+                               min="1000" max="100000" step="100" value="10000" required>
+                        <small class="form-hint">1泊あたりの上限金額</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">日付：</label>
+                            <input type="date" id="date" name="date">
+                            <small class="form-hint">予約希望日（オプション）</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weekday">曜日：</label>
+                            <select id="weekday" name="weekday">
+                                <option value="">選択してください</option>
+                                <option value="monday">月曜日</option>
+                                <option value="tuesday">火曜日</option>
+                                <option value="wednesday">水曜日</option>
+                                <option value="thursday">木曜日</option>
+                                <option value="friday">金曜日</option>
+                                <option value="saturday">土曜日</option>
+                                <option value="sunday">日曜日</option>
+                            </select>
+                            <small class="form-hint">日付の代わりに曜日を指定（オプション）</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="search-btn">
+                        <span class="btn-text">ホテルを検索</span>
+                        <span class="spinner" style="display: none;">🔄</span>
+                    </button>
+                </form>
+            </div>
+
+            <div id="results-section" class="results-section" style="display: none;">
+                <h2>検索結果</h2>
+                <div id="results-container"></div>
+            </div>
+
+            <div id="error-section" class="error-section" style="display: none;">
+                <h2>エラー</h2>
+                <div id="error-message"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Hotel Recommender System - Powered by Rakuten Travel API & Google Places API</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

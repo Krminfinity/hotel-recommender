@@ -22,9 +22,29 @@ pip install -e ".[dev]"
 
 `.env.example` をコピーして `.env` を作成し、必要なAPIキーを設定してください：
 
+**Windows:**
+```powershell
+copy .env.example .env
+```
+
+**Linux/Mac:**
 ```bash
 cp .env.example .env
 ```
+
+**必要なAPIキー:**
+
+1. **Google Places API キー**
+   - [Google Cloud Console](https://console.cloud.google.com/) でプロジェクト作成
+   - Places API を有効化
+   - 認証情報でAPIキーを作成
+   - `.env` の `GOOGLE_PLACES_API_KEY` に設定
+
+2. **楽天トラベルAPI キー**
+   - [楽天デベロッパー](https://webservice.rakuten.co.jp/) でアカウント作成
+   - アプリケーションIDを取得
+   - アフィリエイトIDを取得（収益化用）
+   - `.env` の `RAKUTEN_APPLICATION_ID` と `RAKUTEN_AFFILIATE_ID` に設定
 
 ### 4. サーバーの起動
 
@@ -32,7 +52,45 @@ cp .env.example .env
 uvicorn api.main:app --reload
 ```
 
-## API Usage
+```
+
+## フロントエンド利用方法
+
+### Webインターフェース
+
+1. **サーバー起動**
+```powershell
+python -m uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload
+```
+
+2. **ブラウザアクセス**
+   - http://127.0.0.1:8000 にアクセス
+
+3. **使用方法**
+   - 駅名を入力（例：新宿駅、渋谷駅）
+   - 予算上限を設定（円）
+   - 日付または曜日を選択（オプション）
+   - 「ホテルを検索」ボタンをクリック
+
+### フロントエンドテスト
+
+```powershell
+# 基本テスト実行
+python -m pytest tests/test_frontend.py -v
+
+# フロントエンドテストランナー
+python test_frontend.py
+```
+
+## API利用方法
+
+### エンドポイント
+
+- `GET /` - フロントエンドWebページ
+- `GET /health` - ヘルスチェック
+- `POST /api/suggest` - ホテル推薦API
+
+### API使用例
 
 ### Health Check
 
@@ -91,9 +149,14 @@ hotel-recommender/
 │       ├─ station_google.py # Google Places API
 │       ├─ hotel_base.py    # ホテル情報取得の基底クラス
 │       └─ hotel_rakuten.py # 楽天トラベル API
-├─ web/
-│   └─ index.html          # フロントエンドUI
+├─ static/
+│   ├─ index.html          # フロントエンドメインページ
+│   ├─ css/
+│   │   └─ style.css       # スタイルシート
+│   └─ js/
+│       └─ app.js          # フロントエンドロジック
 ├─ tests/                  # テストケース
+├─ test_frontend.py       # フロントエンドテストランナー
 ├─ .env.example           # 環境変数テンプレート
 └─ README.md              # このファイル
 ```
