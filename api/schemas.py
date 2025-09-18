@@ -29,6 +29,7 @@ class StationInfo(BaseModel):
     latitude: float = Field(..., ge=-90, le=90, description="Latitude")
     longitude: float = Field(..., ge=-180, le=180, description="Longitude")
     place_id: str | None = Field(None, description="Google Places place_id")
+    address: str | None = Field(None, description="Formatted address")
 
 
 class HotelInfo(BaseModel):
@@ -45,6 +46,9 @@ class HotelInfo(BaseModel):
     # Distance information (calculated later)
     distance_m: int | None = Field(None, ge=0, description="Distance from station in meters")
     distance_text: str | None = Field(None, description="Human-readable distance text")
+    
+    # Priority scoring (calculated during search)
+    priority_score: float | None = Field(None, description="Priority score for ranking")
 
 
 class SuggestionRequest(BaseModel):
