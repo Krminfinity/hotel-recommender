@@ -7,13 +7,13 @@
 ### 🔑 API認証情報 完全設定済み
 
 1. **Google Places API**
-   - APIキー: AIzaSyDqxuKPlVAOiqSVoYVstzp-ModNZ1aSVDQ  
+   - APIキー: 
    - ✅ 完全動作確認済み
    - ✅ 駅名検索で3つの駅を正常に取得
 
 2. **Rakuten Travel API** 
-   - Application ID: 1084571896100762276
-   - Affiliate ID: 4c78b21c.a7ee75d7.4c78b21d.abb9bf2f
+   - Application ID: 
+   - Affiliate ID: 
    - ✅ 完全動作確認済み
    - ✅ 50件のホテル検索に成功
 
